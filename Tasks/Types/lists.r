@@ -1,7 +1,7 @@
 task_1 <- function(){
 	l1 <- list("abacaba", 7, TRUE)
 	
-    print(v1)
+    print(l1)
 }
 
 task_2 <- function(){
