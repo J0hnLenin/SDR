@@ -31,4 +31,9 @@ task_5 <- function(){
 
 }
 
-task_5()
+v1 <- c(1:6)
+dim(v1) <- 2:3
+print(v1)
+
+v1 <- as.vector(v1)
+print(v1)

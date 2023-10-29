@@ -19,5 +19,6 @@ task_3 <- function(){
 	print(rev(sort(v1)))
 }
 
-task_1()
-
+x <- c(5, 15, 19, 26, 7, 14)
+x <- sort(x)
+print(x[3])

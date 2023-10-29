@@ -32,4 +32,7 @@ task_5 <- function(){
     print(l2[!(l2 %in% l1)])
 }
 
-task_5()
+v1 <- matrix(data=1:12, nrow=3, ncol=4)
+l2 <- list(v1, "A roza ypala na lapy Azora", 4, 10, NA, FALSE)
+print(l2)
+print(l2[[1]][3,4])
