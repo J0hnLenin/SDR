@@ -1,5 +1,5 @@
-install.packages('ggplot2')
-library("ggplot2")
+#install.packages('ggplot2')
+library('rgl')
 
 tb <- read.table("R1/seeds2.txt", header = TRUE)
 
@@ -7,23 +7,43 @@ tb_kama <- tb[tb$class == 'Kama',]
 tb_rosa <- tb[tb$class == 'Rosa',]
 tb_canadian <- tb[tb$class == 'Canadian',]
   
-# define background color 
-#bg3d(color = "grey") 
-  
-# plot the points 
-
+bg3d(color = "grey") 
  
-ggplot(tb_rosa,aes(x=len,y=width,col='green'))
+plot3d(row$area, row$len, row$grooveLen,
+       xlab = "Area", ylab = "Len", zlab = "GrooveLen",
+       size = 0, lit = FALSE, axes = TRUE)
 
-#(x=tb_canadian$area, y=tb_canadian$len, z=tb_canadian$grooveLen, col ="yellow")
-#points3d(tb_kama$area, tb_kama$len, tb_kama$grooveLen, col ="green", size=30) 
+for(i in 1:nrow(tb)){ # nolint
+    row <- tb[i,]
+    x <- row$area
+    y <- row$len
+    z <- row$grooveLen
+    s = 10
+    if(row$class == 'Kama'){
+        obj <- cube3d(color='green')
+        #obj <- octahedron3d(color='green')
+        obj$vb <- obj$vb + s
+        obj <- translate3d(obj, x, y, z)
+        shade3d(obj)
+    }
+    if(row$class == 'Rosa'){
+        obj <- tetrahedron3d(color='red')
+        obj$vb <- obj$vb + s
+        obj <- translate3d(obj, x, y, z)
+        shade3d(obj)
+    }
+    if(row$class == 'Canadian'){
+        obj <- icosahedron3d(color='magenta')
+        obj$vb <- obj$vb + s
+        obj <- translate3d(obj, x, y, z)
+        shade3d(obj)
+    }
+}
 
-#bbox3d(col = "blue") 
 
-# # # define the axis lines 
-#  lines3d(c(10, 10), c(0,0), c(0,0), col = "red") 
-#  lines3d(c(0,0), c(10, 10), c(0,0), col = "red") 
-#  lines3d(c(0,0), c(0,0), c(10, 10), col = "red") 
-  
-# add animation 
+
+
+
+
+
 #play3d(spin3d(axis = c(1, 0, 0)), duration = 1000000)
